@@ -1,19 +1,26 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int n=nums.size();
-        
-        for(int i=0; i<n; i++){
-            int count=0;
-            for(int j=0; j<n ; j++){
-                if(nums[i]==nums[j]){
-                    count++;
-                }
+        int count = 0, candidate = -1;
+
+        // Step 1: Find candidate
+        for(int num : nums) {
+            if(count == 0) {
+                candidate = num;
             }
-                if(count>(n/2))
-                return nums[i];
-            
+
+            if(num == candidate) count++;
+            else count--;
         }
-        return 0;
+
+        // Step 2: Verify candidate
+        count = 0;
+        for(int num : nums) {
+            if(num == candidate) count++;
+        }
+
+        if(count > nums.size()/2) return candidate;
+
+        return -1; // if no majority
     }
 };
