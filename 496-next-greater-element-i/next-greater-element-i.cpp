@@ -17,8 +17,6 @@ public:
         for (int i = 0; i < nums1.size(); i++) {
             if (mp.find(nums1[i]) != mp.end()) {
                 ans.push_back(mp[nums1[i]]);
-            }else {
-                ans.push_back(-1); // safety (in case element not found)
             }
         }
 
